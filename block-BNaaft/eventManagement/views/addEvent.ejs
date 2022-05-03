@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <% include partials/header %>
+    <nav>
+      <a href="/">Events</a>
+      <a href="/events">Back</a>
+    </nav>
+    <div>
+      <form action="/events" method="POST">
+        <h2>Add Events</h2>
+        <input type="text" name="title" placeholder="Add Title" />
+        <textarea name="summary" id="" cols="30" rows="4" placeholder="Add Summary"></textarea>
+        <input type="text" name="host" placeholder="Add Host" />
+        <input type="date" name="start_date" placeholder="Start Date" />
+        <input type="date" name="end_date" placeholder="End Date" />
+        <input type="text" name="event_category" placeholder="Event Category" />
+        <input type="text" name="location" placeholder="Location" />
+        <input type="number" name="phone" placeholder="(555) 555-5555" />
+        <button type="submit">Add Event</button>
+      </form>
+    </div>
+    <% include partials/footer %>
+  </body>
+</html>

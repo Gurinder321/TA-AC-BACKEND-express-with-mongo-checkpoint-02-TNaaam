@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Events</a>
+      <a href="/events">Back</a>
+    </nav>
+    <div>
+      <form action="/events/<%= event.id %>" method="POST">
+        <h2>Add Book</h2>
+        <input type="text" name="title" placeholder="Add Title" value="<%= event.title %>" />
+        <textarea name="summary" id="" cols="30" rows="4" placeholder="Add Summary">
+            <%= event.summary %>
+            </textarea
+        >
+        <input
+          type="text"
+          name="start_date"
+          placeholder="Start Date"
+          value="<%= event.start_date %>"
+        />
+        <input type="text" name="end_date" placeholder="End Date" value="<%= event.end_date %>" />
+        <input
+          type="text"
+          name="event_category"
+          placeholder="event_category"
+          value="<%= event.event_category %>"
+        />
+        <input type="text" name="location" placeholder="location" value="<%= event.location %>" />
+        <input type="number" name="likes" placeholder="Likes" value="<%= event.likes %>" />
+        <input type="text" name="phone" placeholder="Phone" value="<%= event.phone %>" />
+        <button type="submit">Edit Event</button>
+      </form>
+    </div>
+  </body>
+</html>
