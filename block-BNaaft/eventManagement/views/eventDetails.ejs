@@ -29,7 +29,31 @@
           <button>Delete</button>
         </a>
       </div>
-      <% include partials/footer %>
+
+      <h2>Add Remarks</h2>
+      <div>
+        <form action="/events/<%= event._id %>/remarks" method="POST">
+          <input type="text" name="title" placeholder="Add Title" />
+          <input type="text" name="author" placeholder="Add Author" />
+          <input type="submit" value="Add Remark" />
+        </form>
+      </div>
+
+      <h2>Comments</h2>
+
+      <% event.remarks.forEach(remark => { %>
+      <div>
+        <p>test<%= remark.title %></p>
+        <p><%= remark.author %></p>
+        <a href="/remarks/<%= remark.id %>/edit">
+          <button>Edit</button>
+        </a>
+        <a href="/remarks/<%= remark.id %>/delete">
+          <button>Delete</button>
+        </a>
+      </div>
+      <% }) %> <% include partials/footer %>
     </section>
   </body>
+  `
 </html>
