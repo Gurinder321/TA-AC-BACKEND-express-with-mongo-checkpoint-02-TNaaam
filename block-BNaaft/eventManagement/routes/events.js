@@ -30,9 +30,10 @@ router.post('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   Event.findById(id)
-    // .populate('comments')
+    .populate('remarks')
     .exec((err, event) => {
       if (err) return next(err);
+      console.log(event);
       res.render('eventDetails', { event });
     });
 });
