@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/events', eventsRouter);
-// app.use('/remarks', remarksRouter);
+app.use('/remarks', remarksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
