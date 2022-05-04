@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const Event = require('../models/event');
+const Remark = require('../models/remark');
 
 router.get('/', (req, res) => {
   // fetch list of books from database
@@ -59,10 +60,25 @@ router.post('/:id', (req, res) => {
 
 // delete event
 router.get('/:id/delete', (req, res, next) => {
-  const id = req.params.id;
-  Event.findByIdAndDelete(id, (err, event) => {
+  Event.findByIdAndDelete(req.params.id, (err, event) => {
     if (err) return next(err);
-    res.redirect('/events');
+    Remark.deleteMany({ eventId: event.id }, (err, info) => {
+      res.redirect('/events');
+    });
+  });
+});
+
+// create a comment
+router.post('/:id/remarks', (req, res, next) => {
+  const id = req.params.id;
+  req.body.eventId = id;
+  Remark.create(req.body, (err, remark) => {
+    if (err) return next(err);
+    // update book with comment id into comment section
+    Event.findByIdAndUpdate(id, { $push: { remarks: remark._id } }, (err, updatedEvent) => {
+      if (err) return next(err);
+      res.redirect('/events/' + id);
+    });
   });
 });
 
