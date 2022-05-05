@@ -7,7 +7,7 @@
   </head>
   <body>
     <div>
-      <form action="/events/<%= event._id %>/remarks" method="POST">
+      <form action="/remarks/<%= remark._id %>" method="POST">
         <input type="text" name="title" placeholder="Add Title" value="<%= remark.title %>" />
         <input type="text" name="author" placeholder="Add Author" value="<%= remark.author %>" />
         <input type="submit" value="Update Remark" />
