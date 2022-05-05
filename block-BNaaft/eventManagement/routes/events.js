@@ -6,8 +6,11 @@ const Remark = require('../models/remark');
 router.get('/', (req, res) => {
   // fetch list of books from database
   Event.find({}, (err, events) => {
-    if (err) return next(err);
-    res.render('events', { events });
+    Event.distinct('event_category', (err, categories) => {
+      if (err) return next(err);
+      console.log(categories);
+      res.render('events', { events, categories });
+    });
   });
 });
 
@@ -18,7 +21,8 @@ router.get('/new', (req, res) => {
 // when user presses enter
 router.post('/', (req, res, next) => {
   // capture data
-  // console.log(req.body);
+  req.body.event_category = req.body.event_category.split(',');
+  console.log(req.body);
   // save it to the database
   Event.create(req.body, (err, createdEvent) => {
     if (err) return next(err);
